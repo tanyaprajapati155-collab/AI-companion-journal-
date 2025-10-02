@@ -1,0 +1,16 @@
+{
+  "name": "Companion Journal",
+  "short_name": "Companion",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F5F5",
+  "theme_color": "#E3F2FD",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI4IiBoZWlnaHQ9IjEyOCIgdmlld0JveD0iMCAwIDEyOCAxMjgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiByeD0iMjQiIGZpbGw9IiNFM0YyRkQiLz4KPHN2ZyB4PSIyNCIgeT0iMjQiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDgwIDgwIiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTQwIDIwQzQ5Ljk0MTEgMjAgNTggMjguMDU4OSA1OCAzOEM1OCA0Ny45NDExIDQ5Ljk0MTEgNTYgNDAgNTZDNDAuMDU4OSA1NiA0MCA0Ny45NDExIDQwIDM4QzQwIDI4LjA1ODkgNDAuMDU4OSAyMCA0MCAyMFoiIGZpbGw9IiMzMzg4RjMiLz4KPHBhdGggZD0iTTQwIDI0QzQ3LjczMTkgMjQgNTQgMzAuMjY4MSA1NCAzOEM1NCA0NS43MzE5IDQ3LjczMTkgNTIgNDAgNTJDMzIuMjY4MSA1MiAyNiA0NS43MzE5IDI2IDM4QzI2IDMwLjI2ODEgMzIuMjY4MSAyNCA0MCAyNFoiIGZpbGw9IiMxOTc2RDIiLz4KPHBhdGggZD0iTTM2IDM0SDQ0VjQySDM2VjM0WiIgZmlsbD0iI0UzRjJGRCIvPgo8L3N2Zz4KPC9zdmc+",
+      "sizes": "128x128",
+      "type": "image/svg+xml"
+    }
+  ],
+  "description": "A supportive journaling platform with AI companions that provide emotional support, mood tracking, and personal insights."
+}

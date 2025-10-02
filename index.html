@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Companion Journal - Your AI-Powered Emotional Wellness Partner</title>
+    <meta name="description" content="A supportive journaling platform with AI companions that provide emotional support, mood tracking, and personal insights.">
+    <meta name="theme-color" content="#E3F2FD">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="nav-brand">
+                    <span class="nav-logo">🌸</span>
+                    <span class="nav-title">Companion Journal</span>
+                </div>
+                <div class="nav-links">
+                    <button class="btn btn--outline btn--sm" data-screen="auth">Sign In</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <main class="screen active" id="landing">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Your Personal AI Companion for Emotional Wellness</h1>
+                    <p class="hero-subtitle">A safe, beautiful space where your diary talks back. Get personalized support, track your mood, and grow with an AI companion that truly cares.</p>
+                    <div class="hero-actions">
+                        <button class="btn btn--primary btn--lg" data-screen="auth">Start Your Journey</button>
+                        <button class="btn btn--outline btn--lg" data-action="learn-more">Learn More</button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="companion-preview">
+                        <div class="companion-avatar">🌙</div>
+                        <div class="chat-bubble">
+                            <p>I'm here to listen and support you on your journey. Let's grow together! 💙</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Everything you need for emotional wellness</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">💭</div>
+                        <h3>AI Companions</h3>
+                        <p>Choose from 5 unique companions, each with their own personality and support style.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📖</div>
+                        <h3>Smart Journaling</h3>
+                        <p>Write your thoughts and receive personalized, empathetic responses that help you reflect.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Mood Tracking</h3>
+                        <p>Track your emotions and discover patterns with beautiful, insightful analytics.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✅</div>
+                        <h3>Task Planning</h3>
+                        <p>Stay organized with integrated task management that supports your mental health goals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Preview -->
+        <section class="pricing-preview">
+            <div class="container">
+                <h2 class="section-title">Start free, upgrade when ready</h2>
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <h3>Free</h3>
+                        <div class="price">$0<span>/month</span></div>
+                        <ul class="pricing-features">
+                            <li>✓ 10 journal entries/month</li>
+                            <li>✓ 2 companion personalities</li>
+                            <li>✓ Basic mood tracking</li>
+                            <li>✓ Essential analytics</li>
+                        </ul>
+                        <button class="btn btn--outline btn--full-width" data-screen="auth">Get Started</button>
+                    </div>
+                    <div class="pricing-card pricing-card--featured">
+                        <h3>Premium</h3>
+                        <div class="price">$6.99<span>/month</span></div>
+                        <ul class="pricing-features">
+                            <li>✓ Unlimited journal entries</li>
+                            <li>✓ All 5+ companion personalities</li>
+                            <li>✓ Advanced AI responses</li>
+                            <li>✓ Voice journaling</li>
+                            <li>✓ Advanced analytics</li>
+                            <li>✓ Data export & backup</li>
+                        </ul>
+                        <button class="btn btn--primary btn--full-width" data-screen="auth">Start Premium Trial</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Authentication Screen -->
+    <div class="screen" id="auth">
+        <div class="auth-container">
+            <div class="auth-header">
+                <button class="back-btn" data-screen="landing">← Back</button>
+                <h1>Welcome to Companion Journal</h1>
+                <p>Your journey to emotional wellness starts here</p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form active" id="login-form">
+                <h2>Sign in to your account</h2>
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Email address</label>
+                        <input type="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" placeholder="Enter your password" required>
+                        <div class="password-strength" id="password-strength"></div>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width" data-action="login">Sign In</button>
+                </form>
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+                <div class="social-auth">
+                    <button class="btn btn--outline btn--full-width">Continue with Google</button>
+                </div>
+                <p class="auth-switch">
+                    Don't have an account? 
+                    <button class="link-btn" data-form="register">Create one</button>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div class="auth-form" id="register-form">
+                <h2>Create your account</h2>
+                <form>
+                    <div class="form-group">
+                        <label class="form-label">Full name</label>
+                        <input type="text" class="form-control" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email address</label>
+                        <input type="email" class="form-control" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" placeholder="Create a strong password" required>
+                        <div class="password-strength" id="register-password-strength"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" required>
+                            I agree to the <a href="#" target="_blank">Terms of Service</a> and <a href="#" target="_blank">Privacy Policy</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full-width" data-action="register">Create Account</button>
+                </form>
+                <div class="auth-divider">
+                    <span>or continue with</span>
+                </div>
+                <div class="social-auth">
+                    <button class="btn btn--outline btn--full-width">Continue with Google</button>
+                </div>
+                <p class="auth-switch">
+                    Already have an account? 
+                    <button class="link-btn" data-form="login">Sign in</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Onboarding Flow -->
+    <div class="screen" id="onboarding">
+        <!-- Welcome Step -->
+        <div class="onboarding-step active" id="onboarding-welcome">
+            <div class="onboarding-container">
+                <div class="onboarding-content">
+                    <div class="onboarding-icon">🌟</div>
+                    <h1>Welcome to Your Safe Space</h1>
+                    <p>Companion Journal is more than just a diary—it's a place where you can explore your thoughts and feelings with the support of an AI companion who truly cares.</p>
+                    <ul class="onboarding-features">
+                        <li>🤝 Personalized emotional support</li>
+                        <li>📊 Mood tracking and insights</li>
+                        <li>🎯 Task planning for wellness</li>
+                        <li>🔒 Complete privacy and security</li>
+                    </ul>
+                    <div class="onboarding-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 33%"></div>
+                        </div>
+                        <span>Step 1 of 3</span>
+                    </div>
+                    <button class="btn btn--primary btn--lg" data-step="companion">Choose Your Companion</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Companion Selection Step -->
+        <div class="onboarding-step" id="onboarding-companion">
+            <div class="onboarding-container">
+                <div class="onboarding-content">
+                    <h1>Meet Your Companions</h1>
+                    <p>Choose the companion that resonates with you. You can always change this later!</p>
+                    
+                    <div class="companions-grid" id="companions-grid">
+                        <!-- Companions will be populated by JavaScript -->
+                    </div>
+
+                    <div class="onboarding-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 66%"></div>
+                        </div>
+                        <span>Step 2 of 3</span>
+                    </div>
+                    <div class="onboarding-actions">
+                        <button class="btn btn--outline" data-step="welcome">← Back</button>
+                        <button class="btn btn--primary" data-step="preferences" id="companion-next" disabled>Set Preferences</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preferences Step -->
+        <div class="onboarding-step" id="onboarding-preferences">
+            <div class="onboarding-container">
+                <div class="onboarding-content">
+                    <h1>Customize Your Experience</h1>
+                    <p>Help us personalize your journey with these preferences.</p>
+                    
+                    <div class="preferences-form">
+                        <div class="form-group">
+                            <label class="form-label">How often would you like to journal?</label>
+                            <select class="form-control">
+                                <option value="daily">Daily</option>
+                                <option value="few-times-week">A few times a week</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="when-needed">When I need it</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">What's your main goal?</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="emotional-support">
+                                    Emotional support and understanding
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="mood-tracking">
+                                    Track and understand my moods
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="self-reflection">
+                                    Improve self-reflection and awareness
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" value="stress-management">
+                                    Manage stress and anxiety
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Preferred response style</label>
+                            <select class="form-control">
+                                <option value="gentle">Gentle and nurturing</option>
+                                <option value="direct">Direct and practical</option>
+                                <option value="thoughtful">Thoughtful and reflective</option>
+                                <option value="encouraging">Encouraging and uplifting</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="onboarding-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                        <span>Step 3 of 3</span>
+                    </div>
+                    <div class="onboarding-actions">
+                        <button class="btn btn--outline" data-step="companion">← Back</button>
+                        <button class="btn btn--primary" data-action="complete-onboarding">Start Journaling</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="screen" id="dashboard">
+        <div class="dashboard-header">
+            <div class="container">
+                <div class="dashboard-nav">
+                    <div class="nav-brand">
+                        <span class="nav-logo">🌸</span>
+                        <span class="nav-title">Companion Journal</span>
+                    </div>
+                    <div class="dashboard-actions">
+                        <button class="btn btn--outline btn--sm" data-screen="settings">Settings</button>
+                        <button class="btn btn--primary btn--sm" data-screen="journal-editor">+ New Entry</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="container">
+                <!-- Welcome Section -->
+                <div class="dashboard-welcome">
+                    <div class="companion-greeting">
+                        <div class="companion-avatar" id="dashboard-companion-avatar">🌙</div>
+                        <div class="greeting-content">
+                            <h1>Good evening! 🌙</h1>
+                            <p id="companion-greeting">I can sense that you're going through a lot right now. Remember, it's okay to feel overwhelmed sometimes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">Day Streak</div>
+                        <div class="stat-icon">🔥</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">47</div>
+                        <div class="stat-label">Total Entries</div>
+                        <div class="stat-icon">📖</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">3.8</div>
+                        <div class="stat-label">Avg Mood</div>
+                        <div class="stat-icon">😊</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">23</div>
+                        <div class="stat-label">Tasks Done</div>
+                        <div class="stat-icon">✅</div>
+                    </div>
+                </div>
+
+                <!-- Main Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Recent Entries -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Recent Entries</h3>
+                            <button class="btn btn--outline btn--sm" data-screen="journal-history">View All</button>
+                        </div>
+                        <div class="recent-entries" id="recent-entries">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Mood Trend -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Mood This Week</h3>
+                            <button class="btn btn--outline btn--sm" data-screen="mood-tracking">Track Now</button>
+                        </div>
+                        <div class="mood-chart-container" style="position: relative; height: 200px;">
+                            <canvas id="mood-trend-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Tasks -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Today's Tasks</h3>
+                            <button class="btn btn--outline btn--sm" data-screen="task-planner">Manage</button>
+                        </div>
+                        <div class="task-list" id="dashboard-tasks">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3>Quick Actions</h3>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="action-btn" data-screen="journal-editor">
+                                <div class="action-icon">✍️</div>
+                                <span>Write Entry</span>
+                            </button>
+                            <button class="action-btn" data-screen="companion-chat">
+                                <div class="action-icon">💬</div>
+                                <span>Chat</span>
+                            </button>
+                            <button class="action-btn" data-screen="mood-tracking">
+                                <div class="action-icon">😊</div>
+                                <span>Track Mood</span>
+                            </button>
+                            <button class="action-btn" data-screen="analytics">
+                                <div class="action-icon">📊</div>
+                                <span>Insights</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" data-screen="dashboard">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button class="nav-item" data-screen="journal-history">
+                <span class="nav-icon">📖</span>
+                <span class="nav-label">Journal</span>
+            </button>
+            <button class="nav-item" data-screen="companion-chat">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label">Chat</span>
+            </button>
+            <button class="nav-item" data-screen="mood-tracking">
+                <span class="nav-icon">😊</span>
+                <span class="nav-label">Mood</span>
+            </button>
+            <button class="nav-item" data-screen="analytics">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Insights</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Journal Editor -->
+    <div class="screen" id="journal-editor">
+        <div class="editor-header">
+            <div class="container">
+                <div class="editor-nav">
+                    <button class="back-btn" data-screen="dashboard">← Back</button>
+                    <h1>New Journal Entry</h1>
+                    <div class="editor-actions">
+                        <button class="btn btn--outline btn--sm" id="save-draft" disabled>Draft Saved</button>
+                        <button class="btn btn--primary btn--sm" id="publish-entry">Publish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="editor-content">
+            <div class="container">
+                <div class="editor-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control title-input" placeholder="Give your entry a title..." id="entry-title">
+                    </div>
+                    
+                    <div class="mood-selector">
+                        <label class="form-label">How are you feeling?</label>
+                        <div class="mood-options">
+                            <button class="mood-btn" data-mood="1" data-emotion="sad">😞</button>
+                            <button class="mood-btn" data-mood="2" data-emotion="down">😔</button>
+                            <button class="mood-btn" data-mood="3" data-emotion="okay">😐</button>
+                            <button class="mood-btn" data-mood="4" data-emotion="good">😊</button>
+                            <button class="mood-btn" data-mood="5" data-emotion="great">😄</button>
+                        </div>
+                        <div class="emotion-selector" id="emotion-selector" style="display: none;">
+                            <select class="form-control" id="emotion-select">
+                                <option value="">Select specific emotion...</option>
+                                <option value="anxious">Anxious</option>
+                                <option value="excited">Excited</option>
+                                <option value="grateful">Grateful</option>
+                                <option value="frustrated">Frustrated</option>
+                                <option value="hopeful">Hopeful</option>
+                                <option value="content">Content</option>
+                                <option value="overwhelmed">Overwhelmed</option>
+                                <option value="accomplished">Accomplished</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="editor-toolbar">
+                            <button type="button" class="toolbar-btn" data-format="bold">B</button>
+                            <button type="button" class="toolbar-btn" data-format="italic">I</button>
+                            <button type="button" class="toolbar-btn" data-format="underline">U</button>
+                            <div class="toolbar-divider"></div>
+                            <button type="button" class="toolbar-btn" data-format="insertUnorderedList">• List</button>
+                            <button type="button" class="toolbar-btn" id="ai-prompt">✨ AI Prompt</button>
+                        </div>
+                        <div class="editor-container">
+                            <div class="editor-textarea" contenteditable="true" id="entry-content" placeholder="What's on your mind today? Don't worry about perfect words - just let your thoughts flow..."></div>
+                            <div class="editor-stats">
+                                <span id="word-count">0 words</span>
+                                <span class="auto-save-status" id="auto-save-status">Auto-save enabled</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ai-prompts" id="ai-prompts" style="display: none;">
+                        <h4>Writing Prompts</h4>
+                        <div class="prompt-suggestions">
+                            <button class="prompt-btn">What made you smile today?</button>
+                            <button class="prompt-btn">Describe a challenge you overcame recently</button>
+                            <button class="prompt-btn">What are you grateful for right now?</button>
+                            <button class="prompt-btn">How do you want to feel tomorrow?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Companion Chat -->
+    <div class="screen" id="companion-chat">
+        <div class="chat-header">
+            <div class="container">
+                <div class="chat-nav">
+                    <button class="back-btn" data-screen="dashboard">← Back</button>
+                    <div class="chat-companion-info">
+                        <div class="companion-avatar small" id="chat-companion-avatar">🌙</div>
+                        <div class="companion-details">
+                            <h3 id="chat-companion-name">Luna</h3>
+                            <span class="companion-status">Always here to listen</span>
+                        </div>
+                    </div>
+                    <button class="btn btn--outline btn--sm" data-action="change-companion">Change</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-content">
+            <div class="container">
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message companion-message">
+                        <div class="message-avatar">🌙</div>
+                        <div class="message-content">
+                            <p>Hello! I'm so glad you're here. How are you feeling today? I'm here to listen and support you. 💙</p>
+                            <span class="message-time">Just now</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="typing-indicator" id="typing-indicator" style="display: none;">
+                    <div class="message-avatar">🌙</div>
+                    <div class="typing-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input">
+            <div class="container">
+                <div class="input-container">
+                    <textarea class="chat-textarea" placeholder="Share what's on your mind..." id="chat-input" rows="1"></textarea>
+                    <button class="send-btn" id="send-message" disabled>
+                        <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mood Tracking -->
+    <div class="screen" id="mood-tracking">
+        <div class="mood-header">
+            <div class="container">
+                <div class="screen-nav">
+                    <button class="back-btn" data-screen="dashboard">← Back</button>
+                    <h1>Mood Tracking</h1>
+                    <button class="btn btn--outline btn--sm" data-action="mood-history">History</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mood-content">
+            <div class="container">
+                <div class="mood-tracker">
+                    <div class="mood-question">
+                        <h2>How are you feeling right now?</h2>
+                        <p>Take a moment to check in with yourself</p>
+                    </div>
+
+                    <div class="mood-scale">
+                        <div class="mood-options large">
+                            <button class="mood-btn large" data-mood="1" data-emotion="terrible">
+                                <div class="mood-face">😞</div>
+                                <span>Terrible</span>
+                            </button>
+                            <button class="mood-btn large" data-mood="2" data-emotion="sad">
+                                <div class="mood-face">😔</div>
+                                <span>Sad</span>
+                            </button>
+                            <button class="mood-btn large" data-mood="3" data-emotion="okay">
+                                <div class="mood-face">😐</div>
+                                <span>Okay</span>
+                            </button>
+                            <button class="mood-btn large" data-mood="4" data-emotion="good">
+                                <div class="mood-face">😊</div>
+                                <span>Good</span>
+                            </button>
+                            <button class="mood-btn large" data-mood="5" data-emotion="amazing">
+                                <div class="mood-face">😄</div>
+                                <span>Amazing</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="mood-details" id="mood-details" style="display: none;">
+                        <div class="form-group">
+                            <label class="form-label">What emotions are you experiencing?</label>
+                            <div class="emotion-tags">
+                                <button class="emotion-tag" data-emotion="anxious">Anxious</button>
+                                <button class="emotion-tag" data-emotion="excited">Excited</button>
+                                <button class="emotion-tag" data-emotion="grateful">Grateful</button>
+                                <button class="emotion-tag" data-emotion="frustrated">Frustrated</button>
+                                <button class="emotion-tag" data-emotion="hopeful">Hopeful</button>
+                                <button class="emotion-tag" data-emotion="content">Content</button>
+                                <button class="emotion-tag" data-emotion="overwhelmed">Overwhelmed</button>
+                                <button class="emotion-tag" data-emotion="accomplished">Accomplished</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Any additional notes? (optional)</label>
+                            <textarea class="form-control" placeholder="What triggered this feeling? What happened today?" id="mood-notes"></textarea>
+                        </div>
+
+                        <button class="btn btn--primary btn--full-width" id="save-mood">Save Mood Entry</button>
+                    </div>
+                </div>
+
+                <!-- Mood Trends -->
+                <div class="mood-trends">
+                    <h3>Your Mood Trends</h3>
+                    <div class="chart-container" style="position: relative; height: 300px;">
+                        <canvas id="mood-history-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Journal History -->
+    <div class="screen" id="journal-history">
+        <div class="history-header">
+            <div class="container">
+                <div class="screen-nav">
+                    <button class="back-btn" data-screen="dashboard">← Back</button>
+                    <h1>Journal History</h1>
+                    <button class="btn btn--primary btn--sm" data-screen="journal-editor">+ New Entry</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="history-content">
+            <div class="container">
+                <div class="history-filters">
+                    <div class="filter-group">
+                        <input type="search" class="form-control" placeholder="Search entries..." id="entry-search">
+                        <select class="form-control" id="mood-filter">
+                            <option value="">All moods</option>
+                            <option value="1">😞 Terrible</option>
+                            <option value="2">😔 Sad</option>
+                            <option value="3">😐 Okay</option>
+                            <option value="4">😊 Good</option>
+                            <option value="5">😄 Amazing</option>
+                        </select>
+                        <select class="form-control" id="time-filter">
+                            <option value="">All time</option>
+                            <option value="week">Past week</option>
+                            <option value="month">Past month</option>
+                            <option value="three-months">Past 3 months</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="entries-timeline" id="entries-timeline">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Planner -->
+    <div class="screen" id="task-planner">
+        <div class="tasks-header">
+            <div class="container">
+                <div class="screen-nav">
+                    <button class="back-btn" data-screen="dashboard">← Back</button>
+                    <h1>Task Planner</h1>
+                    <button class="btn btn--primary btn--sm" id="add-task">+ Add Task</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tasks-content">
+            <div class="container">
+                <div class="task-categories">
+                    <button class="category-btn active" data-category="all">All Tasks</button>
+                    <button class="category-btn" data-category="high">High Priority</button>
+                    <button class="category-btn" data-category="today">Due Today</button>
+                    <button class="category-btn" data-category="completed">Completed</button>
+                </div>
+
+                <div class="task-list-container">
+                    <div class="task-section">
+                        <h3>Pending Tasks</h3>
+                        <div class="task-list" id="pending-tasks">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="task-section">
+                        <h3>Completed Tasks</h3>
+                        <div class="task-list" id="completed-tasks">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Dashboard -->
+    <div class="screen" id="analytics">
+        <div class="analytics-header">
+            <div class="container">
+                <div class="screen-nav">
+                    <button class="back-btn" data-screen="dashboard">← Back</button>
+                    <h1>Personal Insights</h1>
+                    <button class="btn btn--outline btn--sm" data-screen="premium">Upgrade for More</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="analytics-content">
+            <div class="container">
+                <div class="analytics-summary">
+                    <h2>Your Journey So Far</h2>
+                    <div class="summary-stats">
+                        <div class="summary-card">
+                            <div class="summary-number">47</div>
+                            <div class="summary-label">Journal Entries</div>
+                            <div class="summary-trend">↗️ +5 this week</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-number">15,420</div>
+                            <div class="summary-label">Words Written</div>
+                            <div class="summary-trend">📝 Average 328/entry</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-number">12</div>
+                            <div class="summary-label">Day Streak</div>
+                            <div class="summary-trend">🔥 Personal best!</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="analytics-charts">
+                    <div class="chart-card">
+                        <h3>Mood Patterns</h3>
+                        <div class="chart-container" style="position: relative; height: 250px;">
+                            <canvas id="analytics-mood-chart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3>Writing Activity</h3>
+                        <div class="chart-container" style="position: relative; height: 250px;">
+                            <canvas id="analytics-activity-chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="insights-section">
+                    <h3>AI Insights</h3>
+                    <div class="insight-cards">
+                        <div class="insight-card">
+                            <div class="insight-icon">📈</div>
+                            <div class="insight-content">
+                                <h4>Mood Improvement</h4>
+                                <p>Your average mood has improved by 0.8 points over the past month. Keep up the great work!</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">✍️</div>
+                            <div class="insight-content">
+                                <h4>Writing Consistency</h4>
+                                <p>You've been journaling consistently for 12 days. Research shows this can significantly improve mental well-being.</p>
+                            </div>
+                        </div>
+                        <div class="insight-card">
+                            <div class="insight-icon">🎯</div>
+                            <div class="insight-content">
+                                <h4>Goal Achievement</h4>
+                                <p>You've completed 23 wellness tasks this month, showing strong commitment to your mental health goals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings -->
+    <div class="screen" id="settings">
+        <div class="settings-header">
+            <div class="container">
+                <div class="screen-nav">
+                    <button class="back-btn" data-screen="dashboard">← Back</button>
+                    <h1>Settings</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-content">
+            <div class="container">
+                <div class="settings-sections">
+                    <section class="settings-section">
+                        <h3>Account</h3>
+                        <div class="settings-group">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <div class="setting-label">Profile</div>
+                                    <div class="setting-description">Manage your personal information</div>
+                                </div>
+                                <button class="btn btn--outline btn--sm">Edit</button>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <div class="setting-label">Email</div>
+                                    <div class="setting-description">user@example.com</div>
+                                </div>
+                                <button class="btn btn--outline btn--sm">Change</button>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <div class="setting-label">Password</div>
+                                    <div class="setting-description">Last changed 30 days ago</div>
+                                </div>
+                                <button class="btn btn--outline btn--sm">Update</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="settings-section">
+                        <h3>Companion</h3>
+                        <div class="settings-group">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <div class="setting-label">Current Companion</div>
+                                    <div class="setting-description">Luna - Supportive</div>
+                                </div>
+                                <button class="btn btn--outline btn--sm" data-action="change-companion">Change</button>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <div class="setting-label">Response Style</div>
+                                    <div class="setting-description">Gentle and nurturing</div>
+                                </div>
+                                <select class="form-control">
+                                    <option>Gentle and nurturing</option>
+                                    <option>Direct and practical</option>
+                                    <option>Thoughtful and reflective</option>
+                                    <option>Encouraging and uplifting</option>
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="settings-section">
+                        <h3>Privacy & Data</h3>
+                        <div class="settings-group">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <div class="setting-label">Data Export</div>
+                                    <div class="setting-description">Download all your journal entries</div>
+                                </div>
+                                <button class="btn btn--outline btn--sm">Export</button>
+                            </div>
+                            <div class="setting-item">
+                                <label class="setting-toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="toggle-slider"></span>
+                                    <div class="setting-info">
+                                        <div class="setting-label">Analytics</div>
+                                        <div class="setting-description">Allow anonymous usage analytics</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="setting-item danger">
+                                <div class="setting-info">
+                                    <div class="setting-label">Delete Account</div>
+                                    <div class="setting-description">Permanently delete your account and all data</div>
+                                </div>
+                                <button class="btn btn--outline btn--sm danger">Delete</button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="settings-section">
+                        <h3>Support</h3>
+                        <div class="settings-group">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <div class="setting-label">Help Center</div>
+                                    <div class="setting-description">Get answers to common questions</div>
+                                </div>
+                                <button class="btn btn--outline btn--sm">Visit</button>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <div class="setting-label">Contact Support</div>
+                                    <div class="setting-description">Get help from our team</div>
+                                </div>
+                                <button class="btn btn--outline btn--sm">Contact</button>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <div class="setting-label">Version</div>
+                                    <div class="setting-description">Companion Journal v1.0.0</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Features -->
+    <div class="screen" id="premium">
+        <div class="premium-header">
+            <div class="container">
+                <div class="screen-nav">
+                    <button class="back-btn" data-screen="dashboard">← Back</button>
+                    <h1>Premium Features</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="premium-content">
+            <div class="container">
+                <div class="premium-hero">
+                    <h2>Unlock the Full Companion Experience</h2>
+                    <p>Get unlimited access to all companions, advanced insights, and exclusive features</p>
+                </div>
+
+                <div class="pricing-comparison">
+                    <div class="comparison-table">
+                        <div class="comparison-header">
+                            <div class="feature-column">Features</div>
+                            <div class="plan-column">Free</div>
+                            <div class="plan-column featured">Premium</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Journal Entries</div>
+                            <div class="plan-value">10/month</div>
+                            <div class="plan-value">Unlimited</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Companion Personalities</div>
+                            <div class="plan-value">2 basic</div>
+                            <div class="plan-value">All 5+ premium</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">AI Response Quality</div>
+                            <div class="plan-value">Standard</div>
+                            <div class="plan-value">Advanced + Context</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Voice Journaling</div>
+                            <div class="plan-value">—</div>
+                            <div class="plan-value">✓</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Advanced Analytics</div>
+                            <div class="plan-value">Basic</div>
+                            <div class="plan-value">Comprehensive</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Data Export</div>
+                            <div class="plan-value">—</div>
+                            <div class="plan-value">✓</div>
+                        </div>
+                        
+                        <div class="comparison-row">
+                            <div class="feature-name">Priority Support</div>
+                            <div class="plan-value">—</div>
+                            <div class="plan-value">✓</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="premium-cta">
+                    <div class="cta-card">
+                        <h3>Start Your Premium Journey</h3>
+                        <div class="premium-price">
+                            <span class="price">$6.99</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <p>Cancel anytime. 7-day free trial.</p>
+                        <button class="btn btn--primary btn--lg btn--full-width">Start Free Trial</button>
+                        <p class="cta-note">No commitment. Cancel before trial ends and pay nothing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Modal -->
+    <div class="modal hidden" id="task-modal">
+        <div class="modal-backdrop" data-close-modal="task-modal"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="task-modal-title">Add New Task</h3>
+                <button class="modal-close" data-close-modal="task-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="task-form">
+                    <div class="form-group">
+                        <label class="form-label">Task Title</label>
+                        <input type="text" class="form-control" id="task-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description (optional)</label>
+                        <textarea class="form-control" id="task-description" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Priority</label>
+                        <select class="form-control" id="task-priority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Due Date</label>
+                        <input type="date" class="form-control" id="task-due-date">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn--outline" data-close-modal="task-modal">Cancel</button>
+                <button class="btn btn--primary" id="save-task">Save Task</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Companion Selection Modal -->
+    <div class="modal hidden" id="companion-modal">
+        <div class="modal-backdrop" data-close-modal="companion-modal"></div>
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3>Choose Your Companion</h3>
+                <button class="modal-close" data-close-modal="companion-modal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="companions-grid" id="companion-modal-grid">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
